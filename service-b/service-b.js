@@ -44,13 +44,13 @@ app.get('/serviceB', async (req, res) => {
 });
 
 // Liveness probe endpoint
-app.get('/healthz', (req, res) => {
+app.get('/serviceB/healthz', (req, res) => {
   "service B Healthy"
   res.status(200).send('OK');
 });
 
 // Readiness probe endpoint
-app.get('/ready', (req, res) => {
+app.get('/serviceB/ready', (req, res) => {
   "service B Ready"
   res.status(200).send('OK');
 });
