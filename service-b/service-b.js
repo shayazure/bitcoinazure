@@ -44,7 +44,7 @@ app.get('/serviceB', async (req, res) => {
 });
 
 // Liveness probe endpoint
-app.get('/serviceB/healthz', (req, res) => {
+app.get('/serviceB/health', (req, res) => {
   "service B Healthy"
   res.status(200).send('OK');
 });

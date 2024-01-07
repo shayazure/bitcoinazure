@@ -44,7 +44,7 @@ app.get('/serviceA', async (req, res) => {
 });
 
 // Liveness probe endpoint
-app.get('/serviceA/healthz', (req, res) => {
+app.get('/serviceA/health', (req, res) => {
   "service A Health"
   res.status(200).send('OK');
 });
@@ -54,12 +54,6 @@ app.get('/serviceA/ready', (req, res) => {
   "service B Ready"
   res.status(200).send('OK');
 });
-
-app.listen(port, () => {
-  console.log(`Service A listening at http://localhost:${port}`);
-});
-
-
 
 
 function formatValue(value) {
