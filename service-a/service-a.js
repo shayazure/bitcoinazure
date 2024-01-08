@@ -25,6 +25,12 @@ setInterval(async () => {
   }
 }, 1000 * 60);
 
+
+app.get('/service-a/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
+
 app.get('/service-a', async (req, res) => {
   try {
     const bitcoinValue = formatValue(gBitcoinRawValue);
@@ -42,6 +48,8 @@ app.get('/service-a', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+
 
 function formatValue(value) {
   return `$${parseInt((value + '').replace('.', ''))}`

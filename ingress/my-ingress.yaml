@@ -3,20 +3,11 @@ kind: Ingress
 metadata:
   name: bcv-ingress
   namespace: default
-  annotations:
-    appgw.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: azure-application-gateway
   rules:
   - http:
       paths:
-      - path: /service-b
-        pathType: Prefix
-        backend:
-          service:
-            name: service-b
-            port:
-              number: 80
       - path: /service-a
         pathType: Prefix
         backend:
@@ -24,4 +15,12 @@ spec:
             name: service-a
             port:
               number: 80
+      - path: /service-b
+        pathType: Prefix
+        backend:
+          service:
+            name: service-b
+            port:
+              number: 80
+
 
