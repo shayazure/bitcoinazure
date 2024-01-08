@@ -25,7 +25,7 @@ setInterval(async () => {
   }
 }, 1000 * 60);
 
-app.get('/serviceA', async (req, res) => {
+app.get('/service-a', async (req, res) => {
   try {
     const bitcoinValue = formatValue(gBitcoinRawValue);
     const timestamp = getFormattedTimestamp();
@@ -42,19 +42,6 @@ app.get('/serviceA', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-
-// Liveness probe endpoint
-app.get('/serviceA/health', (req, res) => {
-  "service A Health"
-  res.status(200).send('OK');
-});
-
-// Readiness probe endpoint
-app.get('/serviceA/ready', (req, res) => {
-  "service B Ready"
-  res.status(200).send('OK');
-});
-
 
 function formatValue(value) {
   return `$${parseInt((value + '').replace('.', ''))}`

@@ -10,14 +10,14 @@ spec:
   rules:
   - http:
       paths:
-      - path: /serviceB
+      - path: /service-b
         pathType: Prefix
         backend:
           service:
             name: service-b
             port:
               number: 80
-      - path: /serviceA
+      - path: /service-a
         pathType: Prefix
         backend:
           service:
