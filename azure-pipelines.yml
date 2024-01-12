@@ -1,0 +1,33 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildServiceA
+    steps:
+    - script: docker build -t service-a:$(tag) -f service-a/Dockerfile .
+      displayName: 'Build Docker image for Service A'
+
+    - script: docker tag service-a:$(tag) bitcoinacr.azurecr.io/service-a:$(tag)
+      displayName: 'Tag Docker image for Service A'
+
+    - script: docker push bitcoinacr.azurecr.io/service-a:$(tag)
+      displayName: 'Push Docker image for Service A'
+
+  - job: BuildServiceB
+    steps:
+    - script: docker build -t service-b:$(tag) -f service-b/Dockerfile .
+      displayName: 'Build Docker image for Service B'
+
+    - script: docker tag service-b:$(tag) bitcoinacr.azurecr.io/service-b:$(tag)
+      displayName: 'Tag Docker image for Service B'
+
+    - script: docker push bitcoinacr.azurecr.io/service-b:$(tag)
+      displayName: 'Push Docker image for Service B'
